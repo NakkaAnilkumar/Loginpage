@@ -1,0 +1,4 @@
+﻿create table Login
+(loginusername varchar(20) primary key,
+loginpassword varchar(20)
+)

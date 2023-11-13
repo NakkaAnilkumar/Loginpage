@@ -1,0 +1,21 @@
+﻿CREATE PROCEDURE [dbo].ValidateUser
+	@p_username varchar(20),
+	@p_pwd varchar(20),
+	@p_userStatus varchar(7)  output
+AS
+declare
+@v_username varchar(20),
+@v_password varchar(20)
+begin
+select @v_username=loginusername,@v_password=loginpassword from Login
+where loginusername=@p_username ;
+if ((@v_password=@p_pwd) and (@v_username=@p_username))
+begin
+set @p_userStatus='Valid'
+end
+else
+begin
+set @p_userStatus='Invalid'
+end
+RETURN 0
+end
